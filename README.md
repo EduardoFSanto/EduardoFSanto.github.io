@@ -4,6 +4,8 @@ Este é o meu portfólio, onde apresento minha trajetória, stack e os projetos 
 
 🔗 **Site online:** [eduardofsanto.github.io](https://eduardofsanto.github.io/)
 
+<img src="https://eduardofsanto.github.io/preview.png" alt="Preview" width="900" />
+
 ---
 
 ### 🚀 O que estou fazendo atualmente
