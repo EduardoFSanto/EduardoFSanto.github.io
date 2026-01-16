@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eduardo Farias do Espírito Santo | Full Stack Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Eduardo Farias do Espírito Santo, Full Stack developer focused on React, Next.js, Node.js, JavaScript, Tailwind CSS and databases."
+    />
+    <style>
+      :root {
+        --bg: #020617;
+        --bg-alt: #020617;
+        --card: #0b1120;
+        --primary: #6366f1;
+        --primary-soft: rgba(99, 102, 241, 0.16);
+        --text: #e5e7eb;
+        --text-muted: #9ca3af;
+        --border: #1f2937;
+        --radius: 14px;
+        --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+        --transition: 0.22s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: radial-gradient(
+            circle at top left,
+            #1e293b 0,
+            transparent 55%
+          ),
+          radial-gradient(circle at top right, #111827 0, transparent 60%),
+          #020617;
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 1.5rem 3.5rem;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(14px);
+        background: linear-gradient(
+          to bottom,
+          rgba(2, 6, 23, 0.96),
+          rgba(2, 6, 23, 0.75),
+          transparent
+        );
+        border-bottom: 1px solid rgba(15, 23, 42, 0.9);
+      }
+
+      .navbar-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0.9rem 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .logo {
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--primary);
+        box-shadow: 0 0 16px rgba(99, 102, 241, 0.9);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.4rem;
+        font-size: 0.88rem;
+      }
+
+      .nav-links a {
+        color: var(--text-muted);
+        position: relative;
+        padding-bottom: 0.15rem;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #6366f1, #8b5cf6);
+        transition: width var(--transition);
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* HERO */
+      .hero {
+        padding: 3.8rem 0 3rem;
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+        gap: 3rem;
+        align-items: center;
+      }
+
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.2rem 0.75rem;
+        border-radius: 999px;
+        border: 1px solid rgba(55, 65, 81, 0.9);
+        background: rgba(15, 23, 42, 0.9);
+        font-size: 0.76rem;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+      }
+
+      .hero-tag-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: #22c55e;
+        box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+      }
+
+      .hero-title {
+        font-size: clamp(2.2rem, 4.4vw, 3rem);
+        font-weight: 700;
+        margin-bottom: 0.8rem;
+      }
+
+      .hero-title span {
+        background: linear-gradient(120deg, #60a5fa, #a855f7, #f97316);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero-subtitle {
+        color: var(--text-muted);
+        max-width: 35rem;
+        font-size: 0.98rem;
+        margin-bottom: 1.4rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        margin-bottom: 1.6rem;
+      }
+
+      .btn {
+        padding: 0.7rem 1.5rem;
+        border-radius: 999px;
+        border: 1px solid transparent;
+        font-size: 0.9rem;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform var(--transition), box-shadow var(--transition),
+          background var(--transition), border-color var(--transition),
+          color var(--transition);
+        background: transparent;
+        color: var(--text);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 26px 52px rgba(15, 23, 42, 0.9);
+      }
+
+      .btn-ghost {
+        border-color: rgba(55, 65, 81, 1);
+        background: rgba(15, 23, 42, 0.95);
+        color: var(--text-muted);
+      }
+
+      .btn-ghost:hover {
+        border-color: var(--primary);
+        color: var(--text);
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        font-size: 0.82rem;
+        color: var(--text-muted);
+      }
+
+      .hero-meta strong {
+        display: block;
+        font-size: 0.9rem;
+        color: var(--text);
+        margin-bottom: 0.15rem;
+      }
+
+      .hero-card {
+        position: relative;
+        background: radial-gradient(circle at top, #1f2937 0, #020617 55%);
+        border-radius: 22px;
+        padding: 1.8rem 1.6rem;
+        border: 1px solid rgba(55, 65, 81, 1);
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        inset: -35%;
+        background: radial-gradient(
+            circle at 0% 0%,
+            rgba(96, 165, 250, 0.16),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 100% 0%,
+            rgba(244, 114, 182, 0.16),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 50% 110%,
+            rgba(56, 189, 248, 0.16),
+            transparent 55%
+          );
+        opacity: 0.9;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .hero-card-title {
+        font-size: 0.86rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--text-muted);
+        margin-bottom: 0.6rem;
+      }
+
+      .hero-card-name {
+        font-size: 1.16rem;
+        font-weight: 600;
+        margin-bottom: 0.15rem;
+      }
+
+      .hero-card-role {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 1.2rem;
+      }
+
+      .hero-card-row {
+        margin-bottom: 1.1rem;
+        font-size: 0.8rem;
+      }
+
+      .hero-card-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--text-muted);
+        margin-bottom: 0.35rem;
+      }
+
+      .hero-card-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.32rem 0.7rem;
+        border-radius: 999px;
+        border: 1px solid rgba(75, 85, 99, 0.95);
+        background: rgba(15, 23, 42, 0.95);
+        font-size: 0.72rem;
+        color: var(--text-muted);
+      }
+
+      .hero-card-pill-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: #22c55e;
+      }
+
+      .hero-card-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .hero-card-badge {
+        font-size: 0.72rem;
+        padding: 0.24rem 0.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(55, 65, 81, 0.95);
+        background: rgba(15, 23, 42, 0.96);
+        color: var(--text-muted);
+      }
+
+      /* SECTIONS */
+      section {
+        margin-top: 3rem;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-subtitle {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 1.4rem;
+      }
+
+      /* ABOUT */
+      .sobre-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 2.4fr) minmax(0, 2fr);
+        gap: 2.4rem;
+      }
+
+      .sobre-text {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+      }
+
+      .sobre-text p + p {
+        margin-top: 0.75rem;
+      }
+
+      .sobre-list {
+        list-style: none;
+        margin-top: 1rem;
+        display: grid;
+        gap: 0.6rem;
+      }
+
+      .sobre-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .bullet {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--primary);
+        box-shadow: 0 0 10px rgba(99, 102, 241, 0.9);
+      }
+
+      .skills-card {
+        background: rgba(15, 23, 42, 0.96);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        padding: 1.3rem 1.4rem;
+      }
+
+      .skills-groups {
+        display: grid;
+        gap: 1.05rem;
+        font-size: 0.82rem;
+      }
+
+      .skills-group-title {
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--text-muted);
+        margin-bottom: 0.32rem;
+      }
+
+      .skills-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+
+      .tag {
+        padding: 0.23rem 0.6rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(15, 23, 42, 0.98);
+        font-size: 0.78rem;
+        color: var(--text-muted);
+      }
+
+      /* PROJECTS */
+      .projects-grid {
+        display: grid;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .projects-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      .project-card {
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 1.25rem 1.3rem;
+        border: 1px solid var(--border);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        isolation: isolate;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at top left,
+          var(--primary-soft),
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity var(--transition);
+        z-index: -1;
+      }
+
+      .project-card:hover::before {
+        opacity: 1;
+      }
+
+      .project-title {
+        font-size: 1rem;
+        font-weight: 600;
+      }
+
+      .project-desc {
+        font-size: 0.86rem;
+        color: var(--text-muted);
+      }
+
+      .project-footer {
+        margin-top: 0.35rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 0.7rem;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        font-size: 0.76rem;
+        color: var(--text-muted);
+      }
+
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        font-size: 0.8rem;
+      }
+
+      .link-pill {
+        padding: 0.28rem 0.7rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(15, 23, 42, 0.98);
+        color: var(--text-muted);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: border-color var(--transition), color var(--transition),
+          transform var(--transition), background var(--transition);
+      }
+
+      .link-pill:hover {
+        border-color: var(--primary);
+        color: var(--text);
+        transform: translateY(-1px);
+        background: rgba(15, 23, 42, 1);
+      }
+
+      /* CONTACT */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.8fr) minmax(0, 2fr);
+        gap: 2.2rem;
+      }
+
+      .contact-card {
+        background: rgba(15, 23, 42, 0.96);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        padding: 1.25rem 1.3rem;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+
+      .contact-card p + p {
+        margin-top: 0.5rem;
+      }
+
+      .contact-list {
+        list-style: none;
+        margin-top: 0.85rem;
+        display: grid;
+        gap: 0.5rem;
+        font-size: 0.88rem;
+      }
+
+      .contact-list a {
+        color: var(--text);
+      }
+
+      .contact-form {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      label {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.55rem 0.7rem;
+        border-radius: 0.7rem;
+        border: 1px solid var(--border);
+        background: rgba(15, 23, 42, 0.98);
+        color: var(--text);
+        font: inherit;
+        resize: vertical;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: 1px solid var(--primary);
+        border-color: var(--primary);
+      }
+
+      .contact-note {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 1.2rem 1.8rem 2rem;
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        text-align: center;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        .hero {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .hero-card {
+          order: -1;
+        }
+
+        .sobre-grid,
+        .contact-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+
+        .navbar-inner {
+          padding-inline: 1.1rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding-inline: 1.1rem;
+        }
+
+        .hero {
+          padding-top: 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="navbar-inner">
+        <div class="logo">
+          <span class="logo-dot"></span>
+          <span>Eduardo Farias</span>
+        </div>
+        <nav class="nav-links">
+          <a href="#sobre">About</a>
+          <a href="#projetos">Projects</a>
+          <a href="#contato">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- HERO -->
+      <section class="hero" id="inicio">
+        <div>
+          <div class="hero-tag">
+            <span class="hero-tag-dot"></span>
+            <span>Available for opportunities</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I'm <span>Eduardo Farias do Espírito Santo</span> 👋
+          </h1>
+
+          <p class="hero-subtitle">
+            Full Stack Developer focused on React, Next.js, Node.js, JavaScript,
+            Tailwind CSS and databases. I enjoy building modern web
+            applications, well-structured and focused on user experience.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              href="https://github.com/EduardoFSanto"
+              target="_blank"
+              class="btn btn-primary"
+            >
+              <span>View GitHub</span>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/eduardo-farias-a886b4361"
+              target="_blank"
+              class="btn btn-ghost"
+            >
+              <span>LinkedIn</span>
+            </a>
+          </div>
+
+          <div class="hero-meta">
+            <div>
+              <strong>Main Stack</strong>
+              React • Next.js • Node.js • JavaScript • Tailwind CSS
+            </div>
+            <div>
+              <strong>Focus</strong>
+              Web Development • Front-end &amp; Full Stack
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="hero-card-title">Profile</div>
+          <div class="hero-card-name">Eduardo Farias do Espírito Santo</div>
+          <div class="hero-card-role">Full Stack Developer</div>
+
+          <div class="hero-card-row">
+            <div class="hero-card-label">Current Focus</div>
+            <div class="hero-card-pill">
+              <span class="hero-card-pill-dot"></span>
+              <span
+                >Evolving personal projects and pursuing opportunities in web
+                development.</span
+              >
+            </div>
+          </div>
+
+          <div class="hero-card-row">
+            <div class="hero-card-label">Technologies</div>
+            <div class="hero-card-tech">
+              <span class="hero-card-badge">React</span>
+              <span class="hero-card-badge">Next.js</span>
+              <span class="hero-card-badge">Node.js</span>
+              <span class="hero-card-badge">JavaScript</span>
+              <span class="hero-card-badge">Tailwind CSS</span>
+              <span class="hero-card-badge">HTML</span>
+              <span class="hero-card-badge">CSS</span>
+              <span class="hero-card-badge">Database</span>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="sobre">
+        <h2 class="section-title">About me</h2>
+        <p class="section-subtitle">
+          A bit about who I am, what I study and how I can contribute to a
+          development team.
+        </p>
+
+        <div class="sobre-grid">
+          <div class="sobre-text">
+            <p>
+              I'm a Full Stack developer focused on React, Next.js, Node.js,
+              JavaScript and databases. I enjoy taking an idea and turning it
+              into a web application, taking care of both the visual part and
+              the logic behind the screen.
+            </p>
+            <p>
+              I'm building and evolving personal projects to consolidate
+              fundamentals of HTML, CSS, Tailwind and development best
+              practices, while preparing to work in technology teams as a Full
+              Stack / Front-end developer.
+            </p>
+
+            <ul class="sobre-list">
+              <li>
+                <span class="bullet"></span>
+                <span>Open to remote and on-site opportunities.</span>
+              </li>
+              <li>
+                <span class="bullet"></span>
+                <span
+                  >Stack: React, Next.js, Node.js, JavaScript, Tailwind, HTML,
+                  CSS and databases.</span
+                >
+              </li>
+              <li>
+                <span class="bullet"></span>
+                <span
+                  >Current focus: practical projects, solid portfolio and
+                  constant evolution.</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <aside class="skills-card">
+            <div class="skills-groups">
+              <div>
+                <div class="skills-group-title">Languages</div>
+                <div class="skills-tags">
+                  <span class="tag">JavaScript</span>
+                  <span class="tag">TypeScript (learning)</span>
+                  <span class="tag">HTML5</span>
+                  <span class="tag">CSS3</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="skills-group-title">Front-end</div>
+                <div class="skills-tags">
+                  <span class="tag">React</span>
+                  <span class="tag">Next.js</span>
+                  <span class="tag">Tailwind CSS</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="skills-group-title">Back-end &amp; Data</div>
+                <div class="skills-tags">
+                  <span class="tag">Node.js</span>
+                  <span class="tag">REST APIs</span>
+                  <span class="tag">Database</span>
+                </div>
+              </div>
+
+              <div>
+                <div class="skills-group-title">Tools</div>
+                <div class="skills-tags">
+                  <span class="tag">Git &amp; GitHub</span>
+                  <span class="tag">VS Code</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projetos">
+        <h2 class="section-title">Featured projects</h2>
+        <p class="section-subtitle">
+          Some of the projects I've been developing to practice modern stack and
+          consolidate my skills.
+        </p>
+
+        <div class="projects-grid">
+          <!-- PROJECT: Resume Platform -->
+          <article class="project-card">
+            <h3 class="project-title">Resume Platform</h3>
+            <p class="project-desc">
+              TypeScript application for resume management, focused on
+              organization, reusable components and database integration.
+              Project designed to facilitate viewing and registration of
+              professional information.
+            </p>
+
+            <div class="project-footer">
+              <div class="project-tech">
+                <span>#TypeScript</span>
+                <span>#FullStack</span>
+                <span>#Database</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/EduardoFSanto/Vagaflow"
+                  target="_blank"
+                  class="link-pill"
+                >
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT: PodePedir -->
+          <article class="project-card">
+            <h3 class="project-title">PodePedir</h3>
+            <p class="project-desc">
+              Personal project to practice a full stack application, combining
+              React, Next.js, Node.js, database and best practices. Focused on
+              consolidating the complete flow of an application: front-end,
+              back-end and data persistence.
+            </p>
+
+            <div class="project-footer">
+              <div class="project-tech">
+                <span>#React</span>
+                <span>#Next.js</span>
+                <span>#Node.js</span>
+                <span>#Database</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/EduardoFSanto"
+                  target="_blank"
+                  class="link-pill"
+                >
+                  <span>GitHub (profile)</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT: Portfolio -->
+          <article class="project-card">
+            <h3 class="project-title">Personal Portfolio</h3>
+            <p class="project-desc">
+              This website you're seeing right now: portfolio page focused on
+              making my stack, projects and contact methods clear, with
+              responsive layout and modern visual.
+            </p>
+
+            <div class="project-footer">
+              <div class="project-tech">
+                <span>#HTML</span>
+                <span>#CSS</span>
+                <span>#JavaScript</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/EduardoFSanto/EduardoF.dev"
+                  target="_blank"
+                  class="link-pill"
+                >
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contato">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">
+          Want to discuss opportunities, projects or technology? Just reach out.
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <p>
+              I'm open to junior positions, internships and freelance work in
+              web development, both front-end and full stack. I enjoy learning
+              by doing, collaborating with the team and writing clean and
+              organized code.
+            </p>
+            <p>
+              If it makes sense for your team or project, it will be a pleasure
+              to talk 🙂
+            </p>
+
+            <ul class="contact-list">
+              <li>
+                LinkedIn:
+                <a
+                  href="https://www.linkedin.com/in/eduardo-farias-a886b4361"
+                  target="_blank"
+                >
+                  linkedin.com/in/eduardo-farias-a886b4361
+                </a>
+              </li>
+              <li>
+                GitHub:
+                <a href="https://github.com/EduardoFSanto" target="_blank">
+                  github.com/EduardoFSanto
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
