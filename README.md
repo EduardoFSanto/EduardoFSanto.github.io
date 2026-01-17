@@ -129,9 +129,6 @@ Interested in collaborating, discussing projects or opportunities? I'd love to c
 📄 License
 This project is under the MIT License - see the LICENSE file for more details.
 
-<div align="center">
-
 Made with ❤️ by Eduardo Farias do Espírito Santo
-⭐ If you liked the portfolio, leave a star on the repository!
 
-</div> 
+If you liked the portfolio, leave a star on the repository! ⭐
